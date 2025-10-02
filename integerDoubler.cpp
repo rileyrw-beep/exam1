@@ -1,10 +1,12 @@
+/*
 #include <iostream>
 #include <vector>
 #include <fstream>
 #include <cstdint>
+#include <string>
 
 void integerDoubler(std::string inputFile, std::string outputFile) {
-    std::vector<std::uint32_t> integers;
+    std::vector<std::int32_t> integers;
     std::ifstream inFile(inputFile, std::ios::binary);
     if (!inFile.is_open()) {
         std::cerr << "Error opening file " << inputFile << std::endl;
@@ -17,7 +19,9 @@ void integerDoubler(std::string inputFile, std::string outputFile) {
         }
     }
 
-    
+    inFile.close();
+
+
     for (size_t i = 0; i < integers.size(); i++) {
         integers.at(i) *= 2;
     }
@@ -27,8 +31,13 @@ void integerDoubler(std::string inputFile, std::string outputFile) {
     }
 
     for (size_t i = 0; i < integers.size(); i++) {
-        outFile.write(reinterpret_cast<char*>(&integers.at(i)), sizeof(std::uint32_t));
+        outFile.write(reinterpret_cast<char*>(&integers.at(i)), sizeof(std::int32_t));
     }
+    outFile.close();
+
+
+
 
 }
 
+*/
