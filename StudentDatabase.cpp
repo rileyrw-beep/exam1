@@ -127,7 +127,7 @@ void StudentDatabase::loadFromFile(const std::string &filename) {
                 scores.push_back(x);
 
             }
-            catch (std::invalid_argument& e) {
+            catch (...) {
                 ids.push_back(scores.back());
                 scores.pop_back();
                 break;
