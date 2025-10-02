@@ -47,8 +47,11 @@ StudentDatabase& StudentDatabase::operator=(const StudentDatabase& other) {
     }
     delete[] students;
     for (size_t i = 0; i < other.students->size(); i++) {
-        Student* s = new Student(*other.students->at(i));
-        temp->at(i) = s;
+        Student* s = new Student(other.students->at(i)->getName(), other.students->at(i)->getId());
+        for (size_t k = 0; k < other.students->size(); k++) {
+            s->addScore(other.students->at(i)->getScores().at(k));
+        }
+        students->at(i) = s;
     }
     students = temp;
     return *this;
