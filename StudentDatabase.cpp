@@ -84,7 +84,7 @@ void StudentDatabase::saveToFile(const std::string& filename) {
         file << students->at(i)->getId() << " ";
         file << students->at(i)->getName() << " ";
         for (size_t k = 0; k < students->size(); k++) {
-            file << students->at(i)->getScores()->at(k) << " ";
+            file << students->at(i)->scores.at(k) << " ";
         }
     }
 }

@@ -34,10 +34,11 @@ const std::string& Student::getName() const {
 int Student::getId() const {
     return id;
 }
-
+/*
 std::vector<int>* Student::getScores() {
     return &scores;
 }
+*/
 
 void Student::setId(const int& new_id) {
     this->id = new_id;

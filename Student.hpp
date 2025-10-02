@@ -5,7 +5,7 @@
 class Student {
     std::string name;
     int id;
-    std::vector<int> scores;
+
 public:
     void addScore(int score);
     void setId(const int& new_id);
@@ -16,7 +16,8 @@ public:
     int getId() const;
     Student();
     Student(const std::string& n, const int& i);
-    std::vector<int>* getScores();
+    //std::vector<int>* getScores();
+    std::vector<int> scores;
 
 
 
