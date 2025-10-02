@@ -143,7 +143,7 @@ void StudentDatabase::loadFromFile(const std::string &filename) {
 }
 
 
-
+/*
 int main() {
     std::cout << "this is working" << std::endl;
     const std::string& fileName = "page.txt";
@@ -168,3 +168,4 @@ int main() {
     StudentDatabase* highIQ = new StudentDatabase();
     highIQ->loadFromFile(fileName);
 }
+*/
