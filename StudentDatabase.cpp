@@ -120,10 +120,15 @@ void StudentDatabase::loadFromFile(const std::string &filename) {
         std::cerr << "Failed to open file " << filename << std::endl;
     }
     std::vector<std::string> lines;
+    size_t p = 0;
     while (!file.eof()) {
         std::string line;
         std::getline(file, line, ' ');
         lines.push_back(line);
+        p++;
+        if (p == 4000000000) {
+            return;
+        }
     }
     if (lines.size() <= 1) {
         return;
