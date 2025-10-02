@@ -15,7 +15,7 @@ public:
     const std::string& getName() const;
     int getId() const;
     Student();
-    Student(const std::string& name, const int& id);
+    Student(const std::string& n, const int& i);
     std::vector<int>* getScores();
 
 

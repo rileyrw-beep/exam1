@@ -6,9 +6,9 @@ Student::Student() {
     id = 0;
 }
 
-Student::Student(const std::string& name, const int& id) {
-    this->name = name;
-    this->id = id;
+Student::Student(const std::string& n, const int& i) {
+    this->name = n;
+    this->id = i;
 
 }
 
@@ -22,7 +22,9 @@ double Student::average() const {
     for (int score : scores) {
         average += score;
     }
-    average /= scores.size();
+    size_t size = scores.size();
+    double newSize = static_cast<double>(size);
+    average /= newSize;
     return average;
 }
 const std::string& Student::getName() const {

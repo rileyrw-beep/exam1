@@ -26,7 +26,7 @@ StudentDatabase& StudentDatabase::operator=(const StudentDatabase& other) {
         return *this;
     }
     std::array<Student*, 100>* temp = new std::array<Student*, 100>;
-    for (int i = 0; i < students->size(); i++) {
+    for (size_t i = 0; i < students->size(); i++) {
         delete students->at(i);
 
     }
