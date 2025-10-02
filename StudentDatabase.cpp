@@ -132,7 +132,7 @@ void StudentDatabase::loadFromFile(const std::string &filename) {
     file.close();
 }
 
-
+/*
 int main() {
     std::cout << "this is working" << std::endl;
     const std::string& fileName = "page.txt";
@@ -155,3 +155,4 @@ int main() {
 
     db->saveToFile(fileName);
 }
+*/
