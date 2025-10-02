@@ -84,7 +84,7 @@ Student* StudentDatabase::findById(int id) {
 }
 
 void StudentDatabase::saveToFile(const std::string& filename) {
-    
+    /*
     std::ofstream file(filename);
     if (!file.is_open()) {
         std::cerr << "Failed to open file " << filename << std::endl;
@@ -100,7 +100,7 @@ void StudentDatabase::saveToFile(const std::string& filename) {
         }
     }
     file.close();
-
+    */
 }
 
 void StudentDatabase::loadFromFile(const std::string &filename) {
