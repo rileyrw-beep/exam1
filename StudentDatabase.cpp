@@ -1,5 +1,6 @@
 #include "StudentDatabase.hpp"
 #include <fstream>
+#include <iostream>
 
 StudentDatabase::StudentDatabase() {
     students = new std::array<Student*, 100>;
@@ -80,13 +81,20 @@ Student* StudentDatabase::findById(int id) {
 
 void StudentDatabase::saveToFile(const std::string& filename) {
     std::ofstream file(filename);
+    if (!file.is_open()) {
+        std::cerr << "Failed to open file " << filename << std::endl;
+    }
     for (size_t i = 0; i < students->size(); i++) {
+        if (students->at(i)==nullptr) {
+            break;
+        }
         file << students->at(i)->getId() << " ";
         file << students->at(i)->getName() << " ";
-        for (size_t k = 0; k < students->size(); k++) {
-            file << students->at(i)->scores.at(k) << " ";
+        for (size_t k = 0; k < students->at(i)->getScores().size(); k++) {
+            file << students->at(i)->getScores().at(k) << " ";
         }
     }
+    file.close();
 }
 
 void StudentDatabase::loadFromFile(const std::string &filename) {
@@ -121,4 +129,29 @@ void StudentDatabase::loadFromFile(const std::string &filename) {
         }
         addStudent(*s);
     }
+    file.close();
+}
+
+
+int main() {
+    std::cout << "this is working" << std::endl;
+    const std::string& fileName = "page.txt";
+    StudentDatabase* db = new StudentDatabase();
+    Student* s = new Student();
+    s->setId(1);
+    s->setName("John");
+    s->addScore(80);
+    s->addScore(100);
+    s->addScore(40);
+    db->addStudent(*s);
+
+    Student* jack = new Student();
+    jack->setId(1);
+    jack->setName("Jack");
+    jack->addScore(20);
+    jack->addScore(400);
+    jack->addScore(90);
+    db->addStudent(*jack);
+
+    db->saveToFile(fileName);
 }
