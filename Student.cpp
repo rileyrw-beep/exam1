@@ -6,7 +6,7 @@ Student::Student() {
     id = 0;
 }
 
-Student::Student(std::string name, int id) {
+Student::Student(const std::string& name, const int& id) {
     this->name = name;
     this->id = id;
 
@@ -37,10 +37,10 @@ std::vector<int>* Student::getScores() {
     return &scores;
 }
 
-void Student::setId(int& id) {
-    this->id = id;
+void Student::setId(const int& new_id) {
+    this->id = new_id;
 }
-void Student::setName(std::string& name) {
-    this->name = name;
+void Student::setName(const std::string& new_name) {
+    this->name = new_name;
 }
 

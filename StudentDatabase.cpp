@@ -88,8 +88,8 @@ void StudentDatabase::saveToFile(const std::string& filename) {
     for (size_t i = 0; i < students->size(); i++) {
         file << students->at(i)->getId() << " ";
         file << students->at(i)->getName() << " ";
-        for (size_t i = 0; i < students->size(); i++) {
-            file << students->at(i)->getScores()->at(i) << " ";
+        for (size_t k = 0; k < students->size(); k++) {
+            file << students->at(i)->getScores()->at(k) << " ";
         }
     }
 }
@@ -118,7 +118,7 @@ void StudentDatabase::loadFromFile(const std::string &filename) {
             try {
                 file >> scores.at(count);
             }
-            catch (std::exception& e) {
+            catch (std::invalid_argument& e) {
                 ids.push_back(scores.back());
                 scores.pop_back();
             }
