@@ -15,9 +15,6 @@ StudentDatabase::StudentDatabase(const StudentDatabase& other) {
 
 StudentDatabase::StudentDatabase(StudentDatabase&& other) noexcept {
     students = other.students;
-    for (size_t i = 0; i < other.students->size(); i++) {
-        other.students->at(i) = nullptr;
-    }
     other.students = nullptr;
 }
 
@@ -50,9 +47,7 @@ StudentDatabase& StudentDatabase::operator=(StudentDatabase&& other) noexcept {
     delete[] students;
 
     students = other.students;
-    for (size_t i = 0; i < other.students->size(); i++) {
-        other.students->at(i) = nullptr;
-    }
+
     other.students = nullptr;
 
     return *this;
