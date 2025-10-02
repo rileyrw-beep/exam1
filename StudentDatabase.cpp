@@ -62,6 +62,10 @@ StudentDatabase::~StudentDatabase() {
 }
 
 void StudentDatabase::addStudent(const Student& s) {
+    if (students->size()==100) {
+        std::cout << "no more room!" << std::endl;
+        return;
+    }
     for (size_t i = 0; i < students->size(); i++) {
         if (students->at(i) == nullptr) {
             students->at(i) = new Student(s);
@@ -80,7 +84,7 @@ Student* StudentDatabase::findById(int id) {
 }
 
 void StudentDatabase::saveToFile(const std::string& filename) {
-    /*
+    
     std::ofstream file(filename);
     if (!file.is_open()) {
         std::cerr << "Failed to open file " << filename << std::endl;
@@ -96,7 +100,7 @@ void StudentDatabase::saveToFile(const std::string& filename) {
         }
     }
     file.close();
-    */
+
 }
 
 void StudentDatabase::loadFromFile(const std::string &filename) {
