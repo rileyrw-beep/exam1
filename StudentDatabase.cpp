@@ -98,6 +98,7 @@ void StudentDatabase::saveToFile(const std::string& filename) {
 }
 
 void StudentDatabase::loadFromFile(const std::string &filename) {
+    /*
     std::ifstream file(filename);
     if (!file.is_open()) {
         std::cerr << "Failed to open file " << filename << std::endl;
@@ -130,7 +131,9 @@ void StudentDatabase::loadFromFile(const std::string &filename) {
         addStudent(*s);
     }
     file.close();
+    */
 }
+
 
 /*
 int main() {
