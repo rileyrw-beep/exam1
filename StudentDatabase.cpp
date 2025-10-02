@@ -130,6 +130,7 @@ void StudentDatabase::loadFromFile(const std::string &filename) {
             catch (std::invalid_argument& e) {
                 ids.push_back(scores.back());
                 scores.pop_back();
+                break;
             }
             count++;
         }
