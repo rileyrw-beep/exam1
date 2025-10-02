@@ -23,7 +23,10 @@ StudentDatabase::StudentDatabase() {
 StudentDatabase::StudentDatabase(const StudentDatabase& other) {
     students = new std::array<Student*, 100>;
     for (size_t i = 0; i < other.students->size(); i++) {
-        Student* s = new Student(*other.students->at(i));
+        Student* s = new Student(other.students->at(i)->getName(), other.students->at(i)->getId());
+        for (size_t k = 0; k < other.students->size(); k++) {
+            s->addScore(other.students->at(i)->getScores().at(k));
+        }
         students->at(i) = s;
     }
 }
