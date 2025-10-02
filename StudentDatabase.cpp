@@ -100,7 +100,7 @@ void StudentDatabase::saveToFile(const std::string& filename) {
 }
 
 void StudentDatabase::loadFromFile(const std::string &filename) {
-    
+
     std::ifstream file(filename);
     if (!file.is_open()) {
         std::cerr << "Failed to open file " << filename << std::endl;
@@ -122,13 +122,19 @@ void StudentDatabase::loadFromFile(const std::string &filename) {
         size_t count = 0;
         while (true) {
             try {
-                file >> scores.at(count);
+                int x = 0;
+                file >> x;
+                scores.push_back(x);
+
             }
             catch (std::invalid_argument& e) {
                 ids.push_back(scores.back());
                 scores.pop_back();
             }
             count++;
+        }
+        for (size_t i = 0; i < scores.size(); i++) {
+            s->addScore(scores[i]);
         }
         addStudent(*s);
     }
@@ -137,7 +143,7 @@ void StudentDatabase::loadFromFile(const std::string &filename) {
 }
 
 
-/*
+
 int main() {
     std::cout << "this is working" << std::endl;
     const std::string& fileName = "page.txt";
@@ -151,7 +157,7 @@ int main() {
     db->addStudent(*s);
 
     Student* jack = new Student();
-    jack->setId(1);
+    jack->setId(7);
     jack->setName("Jack");
     jack->addScore(20);
     jack->addScore(400);
@@ -159,5 +165,6 @@ int main() {
     db->addStudent(*jack);
 
     db->saveToFile(fileName);
+    StudentDatabase* highIQ = new StudentDatabase();
+    highIQ->loadFromFile(fileName);
 }
-*/
