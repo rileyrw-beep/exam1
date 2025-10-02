@@ -10,7 +10,14 @@ void integerDoubler(std::string inputFile, std::string outputFile) {
         std::cerr << "Error opening file " << inputFile << std::endl;
     }
 
-    inFile.read(reinterpret_cast<char*>(integers.data()), integers.size());
+    while (true) {
+        inFile.read(reinterpret_cast<char*>(integers.data()), integers.size());
+        if (inFile.eof()) {
+            break;
+        }
+    }
+
+    
     for (size_t i = 0; i < integers.size(); i++) {
         integers.at(i) *= 2;
     }
@@ -18,6 +25,10 @@ void integerDoubler(std::string inputFile, std::string outputFile) {
     if (!outFile.is_open()) {
         std::cerr << "Error opening file " << outputFile << std::endl;
     }
-    outFile.write(reinterpret_cast<char*>(integers.data()), integers.size());
+
+    for (size_t i = 0; i < integers.size(); i++) {
+        outFile.write(reinterpret_cast<char*>(&integers.at(i)), sizeof(std::uint32_t));
+    }
+
 }
 
