@@ -1,6 +1,20 @@
 #include "StudentDatabase.hpp"
 #include <fstream>
 #include <iostream>
+#include <sstream>
+
+bool containsNum(std::stringstream& ss) {
+    std::string s = ss.str();
+    for (size_t i = 0; i < s.length(); i++) {
+        for (size_t count = 0; count < 10; count++) {
+            std::stringstream seses;
+            seses << count;
+            char x = seses.str().at(0);
+            if (s.at(i)==x) {return true;}
+        }
+    }
+    return false;
+}
 
 StudentDatabase::StudentDatabase() {
     students = new std::array<Student*, 100>;
@@ -81,7 +95,7 @@ Student* StudentDatabase::findById(int id) {
 
 void StudentDatabase::saveToFile(const std::string& filename) {
 
-    std::ofstream file(filename);
+    std::fstream file(filename);
     if (!file.is_open()) {
         std::cerr << "Failed to open file " << filename << std::endl;
     }
@@ -101,53 +115,66 @@ void StudentDatabase::saveToFile(const std::string& filename) {
 
 void StudentDatabase::loadFromFile(const std::string &filename) {
 
-    std::ifstream file(filename);
+    std::fstream file(filename);
     if (!file.is_open()) {
         std::cerr << "Failed to open file " << filename << std::endl;
     }
-
-    int firstID = 0;
-    file >> firstID;
-    std::vector<int> ids;
-    ids.push_back(firstID);
+    std::vector<std::string> lines;
     while (!file.eof()) {
+        std::string line;
+        std::getline(file, line, ' ');
+        lines.push_back(line);
+    }
+    if (lines.size() <= 1) {
+        return;
+    }
+    for (size_t i = 0; i < lines.size(); i++) {
         Student* s = new Student();
-        s->setId(ids.back());
-
-        std::string name = "";
-        file >> name;
-        s->setName(name);
-
+        std::stringstream ss;
+        int id = 0;
+        ss << lines.at(i);
+        ss >> id;
+        s->setId(id);
+        ss.clear();
+        i++;
+        ss << lines.at(i);
+        s->setName(ss.str());
+        ss.clear();
+        if (i==lines.size()-1) {
+            break;
+        }
+        i++;
         std::vector<int> scores;
-        size_t count = 0;
         while (true) {
-            try {
-                int x = 0;
-                file >> x;
-                if (x==0) {
-                    break;
-                }
-                scores.push_back(x);
+           ss << lines.at(i);
+           if (!containsNum(ss)) {
+               scores.pop_back();
+               i = i - 2;
+               break;
 
+           }//6
+            int x = 0;
+            ss >> x;
+            scores.push_back(x);
+            ss.clear();
+            if (i!=lines.size()-1) {
+               i++;
             }
-            catch (...) {
-                ids.push_back(scores.back());
-                scores.pop_back();
+            else {
                 break;
             }
-            count++;
         }
-        for (size_t i = 0; i < scores.size(); i++) {
-            s->addScore(scores[i]);
+        for (size_t g = 0; g < scores.size(); g++) {
+            s->addScore(scores.at(i));
         }
-        addStudent(*s);
-    }
+   }
+
     file.close();
 
 }
 
 
-/*
+
 int main() {
     std::cout << "this is working" << std::endl;
     const std::string& fileName = "page.txt";
@@ -172,4 +199,3 @@ int main() {
     StudentDatabase* highIQ = new StudentDatabase();
     highIQ->loadFromFile(fileName);
 }
-*/
