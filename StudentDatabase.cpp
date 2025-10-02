@@ -165,7 +165,7 @@ void StudentDatabase::loadFromFile(const std::string &filename) {
             }
         }
         for (size_t g = 0; g < scores.size(); g++) {
-            s->addScore(scores.at(i));
+            s->addScore(scores.at(g));
         }
    }
 
@@ -174,7 +174,7 @@ void StudentDatabase::loadFromFile(const std::string &filename) {
 }
 
 
-
+/*
 int main() {
     std::cout << "this is working" << std::endl;
     const std::string& fileName = "page.txt";
@@ -199,3 +199,4 @@ int main() {
     StudentDatabase* highIQ = new StudentDatabase();
     highIQ->loadFromFile(fileName);
 }
+*/
