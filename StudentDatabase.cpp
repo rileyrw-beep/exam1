@@ -162,7 +162,7 @@ void StudentDatabase::loadFromFile(const std::string &filename) {
             ss >> x;
             scores.push_back(x);
             ss.clear();
-            if (i!=lines.size()-1) {
+            if (i<lines.size()-1) {
                i++;
             }
             else {
