@@ -35,8 +35,8 @@ int Student::getId() const {
     return id;
 }
 
-std::vector<int>* Student::getScores() {
-    return &scores;
+std::vector<int> Student::getScores() {
+    return scores;
 }
 
 
