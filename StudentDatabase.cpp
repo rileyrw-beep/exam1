@@ -124,6 +124,9 @@ void StudentDatabase::loadFromFile(const std::string &filename) {
             try {
                 int x = 0;
                 file >> x;
+                if (x==0) {
+                    break;
+                }
                 scores.push_back(x);
 
             }
